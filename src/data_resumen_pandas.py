@@ -1,3 +1,10 @@
+"""
+Con este codigo se crea un archivo .parquet llamado muestra db en el cual se resumen los 29k registros de la base
+de datos, correspondientes a los datos de viajes realizados por taxis amarillos que sean de fecha mayor a
+01/01/2023, el archivo no está en repositorio debido al tamaño de archivos permitos por GITHUB, sin embargo se puede 
+generar y descargar para luego cargarlo en Power BI y realizar el analisis
+
+"""
 import os
 import pandas as pd
 from generals import CONN
@@ -7,23 +14,6 @@ output_dir = r"C:/Users/joaqu/OneDrive/Documentos/KODIGO/Projects/python_Cods/pr
 
 # Crear directorio si no existe (en tu caso ya existe, pero esto es una buena práctica)
 os.makedirs(output_dir, exist_ok=True)
-
-# Realizar la consulta SQL
-# query ="""
-# SELECT vendorid, 
-#         date_trunc('hour', tpep_pickup_datetime) AS pickup_hour,
-#         avg(passenger_count) as avg_passenger_count,
-#         sum(passenger_count) as total_passenger_count,
-#         avg(trip_distance) as avg_trip_distance,
-#         sum(trip_distance) as total_trip_distance,
-#         avg (fare_amount) as avg_fare_amount,
-#         sum (fare_amount) as total_fare_amount,
-#         count (*) as total_trips
-# FROM yellow.yellow_taxi_trips
-# WHERE tpep_pickup_date >='2023-01-01'
-# GROUP BY vendorid,
-#         pickup_hour
-# """
 
 query = """
 SELECT trip_id,vendorid,payment_type,total_amount
